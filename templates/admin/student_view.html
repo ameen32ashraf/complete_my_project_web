@@ -1,0 +1,52 @@
+{% extends "admin/adminindex.html" %}
+{% block  body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/search_student_view_post">
+<table width="200" border="1" class="table table-hover table-bordered">
+  <tr>
+    <td><input type="text" class="form-control" name="textfield" id="textfield" /></td>
+    <td><input type="submit" name="button" id="button" value="Search" class="btn btn-success" /></td>
+  </tr>
+</table>
+
+  <table width="200" border="1" class="table table-hover table-bordered">
+    <tr style="background-color: lightslategray;color: black">
+      <th>Sl No</th>
+      <th>Student Name/Photo</th>
+      <th>Contacts</th>
+      <th>Address</th>
+      <th>Gender</th>
+      <th>Date Of Birth</th>
+      <th>&nbsp;</th>
+      <th>&nbsp;</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['sname'] }}<br><img src="{{ i['photo'] }}" width="100" height="100"></td>
+      <td>Phone Number :{{ i['phoneno'] }}<br>Email :{{ i['email'] }}</td>
+      <td>Place :{{ i['place'] }}<br>Post :{{ i['post'] }}<br>Pin :{{ i['pin'] }}<br>District :{{ i['district'] }}</td>
+      <td>&nbsp;{{ i['gender'] }}</td>
+      <td>&nbsp;{{ i['dob'] }}</td>
+      <td width="50"><a href="/student_edit/{{ i['student_id'] }}" class="btn btn-info">Edit</a></td>
+      <td width="50"><a href="/delete_student_admin/{{ i['student_id'] }}" class="btn btn-danger" onclick="return confirm('Are You Sure?')">Delete</a></td>
+    </tr>
+      {% endfor %}
+  <tr align="center">
+      <td colspan="8"><a href="/student_add" class="btn btn-secondary">ADD</a> </td>
+  </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}
+
+

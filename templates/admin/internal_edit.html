@@ -1,0 +1,65 @@
+{% extends "admin/adminindex.html" %}
+{% block  body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/edit_internal_guide_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <input type="hidden" name="igid" id="igid" value="{{ data['internal_guide_id'] }}"  />
+  <table width="200" border="1" class="table table-hover table-bordered" style="color: black;background-color: lightgray">
+    <tr>
+      <td>Name</td>
+      <td><input type="text" name="textfield" id="textfield"  value="{{ data['internal_name'] }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td><input type="text" name="textfield2" id="textfield2" value="{{ data['email'] }}"class="form-control" required /></td>
+    </tr>
+    <tr>
+      <td>Phone Number</td>
+      <td><input type="text" name="textfield3" id="textfield3"  value="{{ data['phoneno'] }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>Place</td>
+      <td><input type="text" name="textfield4" id="textfield4"  value="{{ data['place'] }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>Date Of Birth</td>
+      <td><input type="text" name="textfield5" id="textfield5"  value="{{ data['dob'] }}" class="form-control" required/></td>
+    </tr>
+    <tr>
+      <td>Gender</td>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="Male" {% if data['gender']=="Male" %} checked {% endif %} id="RadioGroup1_0" />
+          Male</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Female" {% if data['gender']=="Female" %} checked {% endif %}  id="RadioGroup1_1" />
+          Female</label>
+        <br />
+        <label>
+          <input type="radio" name="RadioGroup1" value="Others" {% if data['gender']=="Others" %} checked {% endif %}  id="RadioGroup1_2" />
+          Others</label>
+        <br />
+      </p></td>
+    </tr>
+    <tr>
+      <td>Photo</td>
+      <td>
+          <img src="{{ data['photo'] }}" width="100"  height="100"><br>
+          <input type="file" name="fileField" id="fileField" class="form-control" required /></td>
+    </tr>
+    <tr align="center">
+      <td colspan="2"><input type="submit" name="button" id="button" value="Change" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

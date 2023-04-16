@@ -1,0 +1,40 @@
+{% extends "internal_guide/internalindex.html" %}
+{% block  body %}
+
+
+
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-bordered table-hover">
+    <tr style="background-color: lightslategray;color: black">
+      <th>Sl NO </th>
+              <th>Date</th>
+
+      <th>Tittle</th>
+      <th>Filename</th>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+              <th>{{ i['vdate'] }}</th>
+
+      <td>&nbsp;{{ i['tittle'] }}</td>
+
+{#        <td>&nbsp;<source src="{{ i['filename'] }}" type="video/mp3/mp4"/></td>#}
+
+        <td><video width="320" height="240" controls src="{{ i['filename'] }}"></video></td>
+
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

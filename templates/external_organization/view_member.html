@@ -1,0 +1,34 @@
+{% extends "external_organization/externalindex.html" %}
+{% block  body %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/external_update_attendance">
+  <table width="200" border="1" class="table table-hover table-bordered">
+    <tr style="background-color: lightslategray;color: black">
+      <td>Sl NO </td>
+      <td>Attendance</td>
+      <td>Student Name</td>
+      <td>Contacts</td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ loop.index }}</td>
+      <td><label>
+        <input type="checkbox" name="checkbox" value="{{ i['member_id'] }}" />
+        Present
+      </label></td>
+      <td>&nbsp;{{ i['sname'] }}</td>
+      <td>&nbsp;Email :{{ i['email'] }}<br> Phone No:{{ i['phoneno'] }}</td>
+    </tr>
+      {% endfor %}
+      <tr>
+          <td colspan="4"><input type="submit" value="SUBMIT" class="btn btn-success"> </td>
+      </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

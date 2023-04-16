@@ -1,0 +1,17 @@
+{% extends "internal_guide/internalindex.html" %}
+{% block  body %}
+
+<form id="form1" name="form1" method="post" action="/iguide_add_mark_post">
+<input type="hidden" name="stid" value="{{ data }}">
+  <table width="200" border="1" class="table table-borderless">
+    <tr>
+      <td>Mark</td>
+      <td><input type="text" name="textfield" id="textfield" class="form-control" /></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="Submit" class="btn btn-info" /></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

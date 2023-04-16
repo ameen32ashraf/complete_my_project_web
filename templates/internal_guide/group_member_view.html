@@ -1,0 +1,41 @@
+{% extends "internal_guide/internalindex.html" %}
+{% block  body %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-hover table-striped">
+    <tr style="background-color: lightslategray;color: black">
+      <td>Sl No</td>
+      <td>Student Name/Photo</td>
+      <td>Contacts</td>
+      <td>Address</td>
+      <td>Gender</td>
+      <td>Date Of Birth</td>
+      <td>&nbsp;</td>
+      <td></td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['sname'] }}<br><img src="{{ i['photo'] }}" width="100" height="100"></td>
+      <td>Phone Number :{{ i['phoneno'] }}<br>Email :{{ i['email'] }}</td>
+      <td>Place :{{ i['place'] }}<br>Post :{{ i['post'] }}<br>Pin :{{ i['pin'] }}<br>District :{{ i['district'] }}</td>
+      <td>&nbsp;{{ i['gender'] }}</td>
+      <td>&nbsp;{{ i['dob'] }}</td>
+      <td><a href="/iguide_add_mark/{{ i['student_id'] }}"  class="btn btn-info">Mark</a></td>
+      <td><a href="/iguide_view_mark/{{ i['student_id'] }}"  class="btn btn-info">View Mark</a></td>
+    </tr>
+      {% endfor %}
+
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

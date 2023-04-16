@@ -1,0 +1,32 @@
+{% extends "external_organization/externalindex.html" %}
+{% block  body %}
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form action="/external_share_file_post" method="post" enctype="multipart/form-data" name="form1" id="form1">
+    <input type="hidden" name="gid" value="{{ gpid }}" />
+  <table width="200" border="1" class="table table-hover table-bordered">
+    <tr>
+      <td>Tittle</td>
+      <td><label>
+        <input type="text" name="textfield" class="form-control"  required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Filename</td>
+      <td><label>
+        <input type="file" name="file" class="form-control" required />
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <input type="submit" name="Submit" class="btn btn-success" value="SHARE" />
+      </label></td>
+    </tr>
+  </table>
+</form>
+</body>
+{% endblock %}

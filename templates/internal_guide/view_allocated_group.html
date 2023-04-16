@@ -1,0 +1,71 @@
+{% extends "internal_guide/internalindex.html" %}
+{% block body %}
+
+
+
+{#<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">#}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+{#<form id="form1" name="form1" method="post" action="">#}
+  <table width="200" border="1" class="table table-hover table-bordered">
+    <tr style="background-color: lightslategray;color: black">
+      <td>SL No </td>
+      <td>Group Name </td>
+      <td>Year</td>
+      <td>Date</td>
+{#      <td>Status</td>#}
+      <td></td>
+      <td>Organization</td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+{#      <td></td>#}
+    </tr>
+
+      {% for i in data %}
+    <tr>
+      <td>{{ loop.index }}</td>
+      <td>{{ i['group_name'] }}</td>
+      <td>&nbsp;{{ i['year'] }}</td>
+      <td>&nbsp;{{ i['allocated_date'] }}</td>
+{#      <td>&nbsp;{{ i['status'] }}</td>#}
+      <td><a href="/view_uploaded_topics/{{ i['group_lid'] }}#about" class="btn btn-info">Topics</a></td>
+    <td width="300" height="50">
+      {% if i['eg_id']==None %}
+          <form method="post" action="/internal_allocated_organization_post">
+                    <input type="hidden" name="id" value="{{ i['group_lid'] }}"/>
+                    <div class="row">
+                           <div class="col-md-6 form-group">
+                            <select class="custom-select" name="external" class="form-control">
+                                {% for i in data1 %}
+                                <option value="{{ i['lid'] }}">{{ i['company_name'] }}</option>
+                                {% endfor %}
+                            </select>
+                           </div>
+                       <div class="col-md-6">
+                        <input type="submit" value="Submit" class="btn btn-success" id="shipto">
+                        </div>
+                    </div>
+                    </form>
+      {% else %}
+      {{ i['status'] }}
+      {% endif %}
+      </td>
+    <td><a href="/internal_view_attendance/{{ i['gp'] }}#about" class="btn btn-info">Attendance</a> </td>
+    <td><a href="/internal_view_progress/{{ i['gp'] }}#about" class="btn btn-info">Progress</a> </td>
+    <td><a href="/internal_view_vidoes/{{ i['gp'] }}#about" class="btn btn-info">Videos</a> </td>
+    <td><a href="/iguide_view_members/{{ i['gp'] }}#about" class="btn btn-info">Members</a> </td>
+    </tr>
+      {% endfor %}
+  </table>
+{#</form>#}
+</body>
+</html>
+
+{% endblock %}

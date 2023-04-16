@@ -1,0 +1,53 @@
+{% extends "admin/adminindex.html" %}
+{% block  body %}
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+</head>
+
+<body>
+<form id="form1" name="form1" method="post" action="/search_external_organization_post">
+<table width="200" border="1" class="table table-borderless">
+  <tr>
+    <td><input type="text" name="textfield" id="textfield" class="form-control" /></td>
+    <td align="center"><input type="submit" name="button" id="button" value="Search" class="btn btn-success" /></td>
+{#        <td><a href="/external_organization_add" class="btn btn-secondary">New</a> </td>#}
+  </tr>
+</table>
+
+  <table width="200" border="1" class="table table-hover table-striped">
+    <tr style="background-color: lightslategray;color: black">
+      <td>Sl No</td>
+      <td>Company Name</td>
+      <td>Contacts</td>
+      <td>Address</td>
+      <td>Licence Number</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+      {% for i in data %}
+    <tr style="color: black">
+      <td>{{ loop.index }}</td>
+      <td>&nbsp;{{ i['company_name'] }}</td>
+      <td>Phone Number :{{ i['phoneno'] }}<br>Email :{{ i['email'] }}</td>
+      <td>Place :{{ i['place'] }}<br>Post :{{ i['post'] }}<br>Pin :{{ i['pin'] }}</td>
+      <td>&nbsp;{{ i['license_no'] }}</td>
+      {% if i['ac_status']=='pending' %}
+      <td><a href="/aprv_ext_org/{{ i['lid'] }}" class="btn btn-info">Approve</a></td>
+      <td><a href="/rej_ext_org/{{ i['lid'] }}" onclick="return confirm('Are You Sure?')" class="btn btn-danger">Reject</a></td>
+      {% elif i['ac_status']=='approved' %}
+        <td><b>Approved</b></td>
+      {% else %}
+        <td><b>Rejected</b></td>
+      {% endif %}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "internal_guide/internalindex.html" %}
+{% block  body %}
+<form id="form1" name="form1" method="post" action="">
+  <table width="200" border="1" class="table table-borderless">
+    <tr style="background-color: lightslategray;color: black">
+      <td>Sl No</td>
+      <td>Mark</td>
+      <td>Date</td>
+      <td>&nbsp;</td>
+    </tr>
+      {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ loop.index }}</td>
+      <td>&nbsp;{{ i['mark'] }}</td>
+      <td>&nbsp;{{ i['date'] }}</td>
+{#      <td><a href="#">Delete</a></td>#}
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}
